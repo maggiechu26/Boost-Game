@@ -23,10 +23,10 @@ public class Rocket : MonoBehaviour {
             rigidBody.AddRelativeForce(Vector3.up);
         }
         if (Input.GetKey(KeyCode.A)) {
-            transform.Rotate(Vector3.forward); //z axis
+            transform.Rotate(Vector3.forward); //z axis clockwise
         }
         else if (Input.GetKey(KeyCode.D)) {
-            transform.Rotate(-Vector3.forward); //z axis
+            transform.Rotate(-Vector3.forward); //z axis counterclockwise
         }
 
     }
