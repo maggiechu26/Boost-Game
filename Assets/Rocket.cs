@@ -23,6 +23,24 @@ public class Rocket : MonoBehaviour {
         Rotate();
 	}
 
+    void OnCollisionEnter(Collision collision) { //as long as it has collider on sub-objects, then it gets called when hits something
+        switch (collision.gameObject.tag) { //look at the gameObject you are colliding with and read its "tag"
+            case "Friendly":
+                //do nothing
+                print("OK"); //todo: remove
+                break;
+            case"Fuel":
+                print("Fuel");
+                break;
+            default:
+                print("Dead");
+                //todo: kill player
+                break;
+
+        }
+    }
+
+
     private void Thrust()
     {
         if (Input.GetKey(KeyCode.Space)) { //can thrust while rotation
@@ -51,5 +69,6 @@ public class Rocket : MonoBehaviour {
 
         rigidBody.freezeRotation = false; //resume physics control of rotation
     }
+
 
 }
