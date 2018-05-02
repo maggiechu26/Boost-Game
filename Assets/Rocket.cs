@@ -9,6 +9,7 @@ public class Rocket : MonoBehaviour {
     [SerializeField] float rcsThrust = 100f; //serializeField --> exposes variable in inspector, not editable in other script
     [SerializeField] float mainThrust = 100f;
     [SerializeField] AudioClip mainEngine, deathSound, levelLoadSound; //we will reference audioClip from inspector
+    [SerializeField] ParticleSystem mainEngineParticles, levelLoadSoundParticles, deathSoundParticles;
 
     Rigidbody rigidBody;
     AudioSource audioSource;
@@ -49,6 +50,7 @@ public class Rocket : MonoBehaviour {
         state = State.Transcending;
         audioSource.Stop();
         audioSource.PlayOneShot(levelLoadSound);
+        levelLoadSoundParticles.Play();
         Invoke("LoadNextScene", 1f); //invoke the method after x second
     }
 
@@ -56,6 +58,7 @@ public class Rocket : MonoBehaviour {
         state = State.Dying;
         audioSource.Stop();
         audioSource.PlayOneShot(deathSound);
+        deathSoundParticles.Play();
         Invoke("LoadFirstScene", 1f); // parameterise time
     }
 
@@ -73,6 +76,8 @@ public class Rocket : MonoBehaviour {
         }
         else {
             audioSource.Stop();
+            mainEngineParticles.Stop();
+
         }
     }
 
@@ -81,6 +86,7 @@ public class Rocket : MonoBehaviour {
         if (!audioSource.isPlaying) { 
             audioSource.PlayOneShot(mainEngine); //so it doesn't layer on top of each other
         }
+        mainEngineParticles.Play();
     }
 
     private void RespondToRotateInput() {
