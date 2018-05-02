@@ -14,7 +14,7 @@ public class Rocket : MonoBehaviour {
     Rigidbody rigidBody;
     AudioSource audioSource;
 
-    enum State { Alive, Dying, Transcending } //of type value "State"
+    enum State {Alive, Dying, Transcending} //of type value "State"
     State state = State.Alive;
 
     // Use this for initialization
@@ -29,7 +29,6 @@ public class Rocket : MonoBehaviour {
             RespondToThrustInput();
             RespondToRotateInput();
         }
-
 	}
 
     void OnCollisionEnter(Collision collision) { //as long as it has collider on sub-objects, then it gets called when hits something
@@ -77,7 +76,6 @@ public class Rocket : MonoBehaviour {
         else {
             audioSource.Stop();
             mainEngineParticles.Stop();
-
         }
     }
 
@@ -102,6 +100,4 @@ public class Rocket : MonoBehaviour {
 
         rigidBody.freezeRotation = false; //resume physics control of rotation
     }
-
-
 }
